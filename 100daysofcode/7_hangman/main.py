@@ -1,9 +1,21 @@
 import random
 word_list = ['bee','tennis']
 
-#TODO 1 Randomly chose a word from the list and assign it to a variable called chosen_word
-chosen_word = word_list
 
-#TODO 2 Ask the user to guess a letter and assign their answer to a var called guess .. Make it lowecase
+chosen_word = random.choice(word_list)
+print(f"pst the chosen word is {chosen_word}")
+#TODO 1 Create an empty list called display.  # for each letter in the chosen_word, add a "_" to the diplay.
 
-#TODO 3 Check if the letter the user guessed (guess) is one of the letters inthe chosen_word
+
+guess = input("Make a guess : ").lower()
+
+#TODO 2 Lop through each positiuon in the chosen_word: # if the letter at that position matches 'guess' then revel that letter in the display at that position. 
+
+
+for letter in chosen_word:
+    if letter == guess:
+        print("yes!")
+    else:
+        print("no")
+
+#TODO 3 Print 'display' and you should see the guessed letter in the correct positon and every other letter replace with"_".
