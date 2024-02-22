@@ -1,6 +1,8 @@
+import random
 word_list = ['bee','tennis']
 
 #TODO 1 Randomly chose a word from the list and assign it to a variable called chosen_word
+chosen_word = word_list
 
 #TODO 2 Ask the user to guess a letter and assign their answer to a var called guess .. Make it lowecase
 
