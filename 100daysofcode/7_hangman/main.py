@@ -1,23 +1,35 @@
 import random
+import art
 word_list = ['bee','tennis']
 
 
 chosen_word = random.choice(word_list)
 print(f"pst the chosen word is {chosen_word}")
-#TODO 1 Create an empty list called display.  # for each letter in the chosen_word, add a "_" to the diplay.
+
 display = []
 for i in chosen_word:
     display.append("_")
 
 print(" ".join(display))
-guess = input("Make a guess : ").lower()
 
-#TODO 2 Lop through each positiuon in the chosen_word: # if the letter at that position matches 'guess' then revel that letter in the display at that position. 
-count = 0
-for letter in chosen_word:
-    if letter == guess:
-        chosen_word[count] = letter
-    else:
-        print("no")
+lives = 0
 
-#TODO 3 Print 'display' and you should see the guessed letter in the correct positon and every other letter replace with"_".
+while "_" in display and lives <7:
+
+    guess = input("Make a guess : ").lower()
+    for index, letter in enumerate(chosen_word):
+        if letter == guess:
+            display[index] = letter
+
+    if guess not in chosen_word:
+        print(art.stages[lives])
+        lives +=1
+
+
+
+    print(" ".join(display))
+
+if lives == 7:
+    print("You lost!")
+else: 
+    print("You won congrats!")
