@@ -1,23 +1,31 @@
-student_scores = {
-  "Harry": 81,
-  "Ron": 78,
-  "Hermione": 99, 
-  "Draco": 74,
-  "Neville": 62,
-}
-# 🚨 Don't change the code above 👆
-# TODO-1: Create an empty dictionary called student_grades.
-student_grades = {}
+import os
 
-# TODO-2: Write your code below to add the grades to student_grades.👇
-for student in student_scores:
-    if student_scores[student] > 90:
-        student_grades[student] = "Outstanding"
-    elif student_scores[student] > 80:
-        student_grades[student] = "Exceeds Expectations"
-    elif student_scores[student] > 70:
-        student_grades[student] = "Acceptable"
+more_bids = True
+auctioneer = []
+
+def add_person(name,bid):
+    new_bidder = {"name":name, "bid":bid}
+    auctioneer.append(new_bidder)
+
+def find_highest_bidder():
+    highest_bid = 0
+    winner = ""
+    for bidder in auctioneer:
+        bid_amount = bidder["bid"]
+        if bid_amount > highest_bid:
+            highest_bid = bid_amount
+            winner = bidder["name"]
+    print(f"The winner is {winner} with the highest bid of {highest_bid}")
+while more_bids is True:
+    name = input("What is your name?: ")
+    bid = int(input("how much would you like to bid?: $ "))
+    add_person(name, bid)
+    question = input("Are there any more who would like to bid? ")
+    if question == 'yes':
+        os.system('clear')
+    elif question == 'no':
+        os.system('clear')
+        find_highest_bidder()
+        more_bids = False
     else:
-        student_grades[student] = "Fail"
-# 🚨 Don't change the code below 👇
-print(student_grades)
+        print("Wrong syntax, try again")
