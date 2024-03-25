@@ -23,28 +23,37 @@ beräkningar = {
 }
 
 print(art.logo)
+utfall = 0 
 while game_on is True:
-    utfall = 0 
-
     if utfall == 0:
         
-        n1 = int(input('First number: '))
+        n1 = float(input('First number: '))
         for symbol in beräkningar:
             print(symbol)
         symbol = input('Pick a calculation symbol from above : ')
-        n2 = int(input('Second number: '))
+        n2 = float(input('Second number: '))
         answer = beräkningar[f'{symbol}'](n1,n2)
-    elif func == 'clear':
-        n1 = 0  
-        n2 = 0
-        utfall == 0
+        utfall = beräkningar[f'{symbol}'](n1,n2)
+    elif symbol == 'c':
+        clear()
         print(art.logo)
-    elif func == 'quit':
+        pass
+    elif symbol == 'quit':
         game_on = False 
-    else:
+    else: 
+        # utfall > 0:
         print(f'{n1} {symbol} {n2} = {answer}')
+        n1 = answer
+        for symbol in beräkningar:
+            print(symbol)
         symbol = input('Pick a calculation symbol from above : ')
-        n2 = int(input(f"{symbol} number: ")) 
+        n2 = float(input(f"{n1} {symbol} number: ")) 
+        answer = beräkningar[f'{symbol}'](n1,n2)
+        utfall = beräkningar[f'{symbol}'](n1,n2)
+        print(f'{answer} {symbol} {n2} = {answer}')
+        
+
+
 exit()
 while game_on is True:
 
