@@ -6,6 +6,7 @@ game_on = True
 score = 0
 print(art.logo)
 
+
 def get_data():
     random_dict = random.choice(game_data.data)
     name = random_dict['name']
@@ -30,9 +31,10 @@ def check_answer(question):
         print(f"Wrong, you final score was {score}")
         quit()
 
+numberone = get_data()
+
 
 while game_on == True:
-    numberone = get_data()
     numbertwo = get_data()
     if numberone == numbertwo:
         numbertwo = get_data()
@@ -45,4 +47,6 @@ while game_on == True:
     print(art.logo)
     score += 1
     print(f"Correct! Curent score: {score}") 
+    if question == 'B':
+        numberone = numbertwo
 
