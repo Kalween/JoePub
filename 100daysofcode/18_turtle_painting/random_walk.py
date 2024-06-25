@@ -1,6 +1,7 @@
 import turtle as t
 import random
 tim = t.Turtle()
+t.colormode(255)
 
 colors = ['red','green','blue','yellow','black','purple','orange']
 random_walk = [tim.right,tim.left]
@@ -24,6 +25,7 @@ def drawing(times):
 directions = [0, 90, 180, 270]
 
 for _ in range(200):
-    tim.color(random.randint(1,255), random.randint(1,255), random.randint(1,255))
+    my_tuple = (random.randint(0,255), random.randint(0,255), random.randint(0,255))
+    tim.color(my_tuple[0],my_tuple[1],my_tuple[2])
     tim.forward(30)
     tim.setheading(random.choice(directions))
