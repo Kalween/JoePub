@@ -5,7 +5,7 @@ import time
 screen = Screen()
 screen.setup(width=800,height=600)
 screen.bgcolor("black")
-screen.title("oh herro")
+screen.title("Pong")
 screen.tracer(0)
 
 
@@ -27,13 +27,15 @@ screen.onkey(paddle2.go_down, "s")
 game_on = True
 
 while game_on:
-    screen.update()
     time.sleep(0.1)
-    ball.forward(10)
+    screen.update()
+    ball.move()
 
-    if ball.xcor() == paddle1.xcor():
-        game_on = False
+    #detect collision with wall
+    if ball.ycor() > 290 or ball.ycor() < -290:
+        ball.bounce()
 
-
+    #detect collision with the paddle
+    
 screen.exitonclick()
 
