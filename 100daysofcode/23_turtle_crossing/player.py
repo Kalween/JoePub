@@ -8,8 +8,11 @@ class Player(Turtle):
         self.color("black")
         self.setheading(90)
         self.penup()
-        self.goto(0,-280)
+        self.reset()
 
 
     def move(self):
         self.forward(10)
+
+    def reset(self):
+        self.goto(0,-280)
