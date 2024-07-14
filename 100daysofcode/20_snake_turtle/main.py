@@ -5,7 +5,7 @@ from food import Food
 import time
 
 screen = Screen()
-screen.setup(width=600,height=600)
+screen.setup(width=600,height=600,startx=2500, starty=300)
 screen.bgcolor("black")
 screen.title("snakeola")
 screen.tracer(0)
@@ -35,15 +35,18 @@ while game_on:
         score.inscrease_score()
 
     # Detection with wall
-    if abs(snake.head.xcor() > 280) or abs(snake.head.ycor()) > 280 :
-        score.game_over()
-        game_on = False
+    if snake.head.xcor() > 280 or snake.head.xcor() < -280 or snake.head.ycor() > 280  or snake.head.ycor() <-280:
+        score.reset()
+        snake.reset()
 
-    #Detect collision with head
-    for segment in snake.segments[1:]:
-        if snake.head.distance(segment) < 10:
-            game_is_on = False
-            score.game_over()
+
+    #Detect collision with tail
+    for segment in snake.segments:
+        if segment == snake.head:
+            pass
+        elif snake.head.distance(segment) < 10:
+            score.reset()
+            snake.reset()
 
         
 
