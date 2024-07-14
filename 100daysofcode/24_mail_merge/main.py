@@ -4,7 +4,17 @@
 
 # with open("my_file.txt", mode="w") as file:
 #     file.write("\nTest new test")
+import os
 
+
+LETTER = "Input/Letters/starting_letter.txt"
+NAMES = "Input/Names/invited_names.txt"
+
+with open(LETTER) as letter:
+    content = letter.read()
+    print(content)
+    for i in content:
+        print(i)
 #TODO: Create a letter using starting_letter.txt 
 #for each name in invited_names.txt
 #Replace the [name] placeholder with the actual name.
