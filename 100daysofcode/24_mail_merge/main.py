@@ -9,12 +9,19 @@ import os
 
 LETTER = "Input/Letters/starting_letter.txt"
 NAMES = "Input/Names/invited_names.txt"
+OUTPUT = "Output/ReadyToSend/"
+
+with open(NAMES) as names:
+    read_names = names.read()
+    n = list(read_names.split("\n"))
+
 
 with open(LETTER) as letter:
     content = letter.read()
-    print(content)
-    for i in content:
-        print(i)
+    for i in n:
+        x = content.replace("[name]", i)
+        with open(f"{OUTPUT}{i}.txt", mode="w") as new_file:
+            new_file.write(x)
 #TODO: Create a letter using starting_letter.txt 
 #for each name in invited_names.txt
 #Replace the [name] placeholder with the actual name.
