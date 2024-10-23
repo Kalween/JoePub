@@ -11,6 +11,7 @@ for (key, value) in student_dict.items():
 import pandas
 student_data_frame = pandas.DataFrame(student_dict)
 
+
 #Loop through rows of a data frame
 for (index, row) in student_data_frame.iterrows():
     #Access index and row
@@ -22,9 +23,15 @@ for (index, row) in student_data_frame.iterrows():
 
 #TODO 1. Create a dictionary in this format:
 {"A": "Alfa", "B": "Bravo"}
-nato_df = pandas.DataFrame("nato_phonetic_alphabet.csv")
-nato_alfabet = {"bokstav":"namn" (index, row) in nato_df.iterrows()}
-print(nato_alfabet)
+nato_df = pandas.read_csv("nato_phonetic_alphabet.csv")
+
+nato_alfabet = {row['letter']: row['code'] for (index, row) in nato_df.iterrows()}
+# print(nato_alfabet)
 
 #TODO 2. Create a list of the phonetic code words from a word that the user inputs.
+tolka = input("Type a word: ")
+tolka2 = [letter for letter in tolka]
+nato = [word for word in tolka2]
+print(tolka2)
+
 
