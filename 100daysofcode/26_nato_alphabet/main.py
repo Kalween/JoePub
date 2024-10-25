@@ -31,7 +31,8 @@ nato_alfabet = {row['letter']: row['code'] for (index, row) in nato_df.iterrows(
 #TODO 2. Create a list of the phonetic code words from a word that the user inputs.
 tolka = input("Type a word: ")
 tolka2 = [letter for letter in tolka]
-nato = [word for word in tolka2]
-print(tolka2)
+# nato = [(nato_alfabet[row['letter']], word) for word in tolka2]
+nato = [(letter, nato_alfabet[letter]) for letter in tolka if letter in nato_alfabet]
+print(nato)
 
 
