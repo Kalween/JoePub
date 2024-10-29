@@ -2,6 +2,7 @@ from tkinter import *
 import string
 import random
 import pandas as pd
+import os
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
@@ -33,9 +34,16 @@ def pwd_gen():
 
 def save_pwd():
     
-    data_to_export = {site_entry.get():[username_entry,password_entry]}
+    data_to_export = {
+        "site":[site_entry.get()],
+        "Username":[username_entry.get()],
+        "Password":[generate_entry.get()]
+        }
     new_df = pd.DataFrame(data_to_export)
-    new_df.to_csv("logs.csv")
+    if os.path.exists("logs.csv"):
+        new_df.to_csv("logs.csv", mode="a", index=False, header=False, encoding="utf-8")
+    else:
+        new_df.to_csv("logs.csv", mode="w", index=False, encoding="utf-8")
 
 
 # ---------------------------- UI SETUP ------------------------------- #
@@ -95,6 +103,7 @@ password_entry.grid(row=3, column=2)
 
 site_entry = Entry()
 site_entry.grid(row=5, column=0)
+site_entry.focus()
 
 generate_entry = Entry()
 generate_entry.grid(row=6, column=1)
