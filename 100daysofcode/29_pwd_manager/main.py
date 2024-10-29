@@ -1,28 +1,42 @@
 from tkinter import *
 import string
 import random
+import pandas as pd
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
 
 # Lista med alla små bokstäver, stora bokstäver, siffror och specialtecken
-alfabet_små = list(string.ascii_lowercase)
-alfabet_stora = list(string.ascii_uppercase)
-siffror = list(string.digits)
-specialtecken = list(string.punctuation)
+def pwd_gen():
+    alfabet_små = list(string.ascii_lowercase)
+    alfabet_stora = list(string.ascii_uppercase)
+    siffror = list(string.digits)
+    specialtecken = list(string.punctuation)
 
-lösenord = []
-# Kombinera alla i en lista
-for _ in range(1,10):
-    lösenord.append(random.choice(alfabet_små))
-    lösenord.append(random.choice(alfabet_stora))
-    lösenord.append(random.choice(siffror))
-    lösenord.append(random.choice(specialtecken))
-random.shuffle(lösenord)
+    lösenord = []
+    # Kombinera alla i en lista
+    for _ in range(int(spinbox1.get())):
+        lösenord.append(random.choice([random.choice(alfabet_små), random.choice(alfabet_stora)]))
 
-print("".join(lösenord))
+        
+    for _ in range(int(spinbox2.get())):    
+        lösenord.append(random.choice(siffror))
+
+    for _ in range(int(spinbox3.get())):    
+        lösenord.append(random.choice(specialtecken))
+    random.shuffle(lösenord)
+    generate_entry.delete(0, "end")
+    generate_entry.insert(END,"".join(lösenord))
+    print("".join(lösenord))
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
+
+def save_pwd():
+    
+    data_to_export = {site_entry.get():[username_entry,password_entry]}
+    new_df = pd.DataFrame(data_to_export)
+    new_df.to_csv("logs.csv")
+
 
 # ---------------------------- UI SETUP ------------------------------- #
 
@@ -48,7 +62,7 @@ site_label.grid(row=4, column=0)
 generate_label = Label(text='Generate')
 generate_label.grid(row=5, column=1)
 
-# Buttons
+
 
 #Spinboxes
 START_VALUE_ALPH = IntVar(value=5)
@@ -85,9 +99,12 @@ site_entry.grid(row=5, column=0)
 generate_entry = Entry()
 generate_entry.grid(row=6, column=1)
 
-
-generate_button = Button(text="Generate Password")
+# Buttons
+generate_button = Button(text="Generate Password", command=pwd_gen)
 generate_button.grid(row=7, column=1)
+
+save_button = Button(text="Save Password", command=save_pwd)
+save_button.grid(row=6, column=2)
 
 
 
