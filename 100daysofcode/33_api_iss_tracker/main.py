@@ -1,8 +1,8 @@
 import requests
 from datetime import datetime
 
-MY_LAT = 58.706070 # Your latitude
-MY_LONG = 15.767550 # Your longitude
+MY_LAT = 122.706070 # Your latitude
+MY_LONG = 33.767550 # Your longitude
 
 response = requests.get(url="http://api.open-notify.org/iss-now.json")
 response.raise_for_status()
@@ -10,8 +10,12 @@ data = response.json()
 
 iss_latitude = float(data["iss_position"]["latitude"])
 iss_longitude = float(data["iss_position"]["longitude"])
-
+print(iss_longitude)
+print(iss_latitude)
 #Your position is within +5 or -5 degrees of the ISS position.
+if abs(MY_LAT - iss_latitude) <= 5 and abs(MY_LONG - iss_longitude) <= 5:
+    print("it's here!")
+
 
 
 parameters = {
