@@ -22,17 +22,26 @@ parameters = {
 yesterday = (datetime.now() - timedelta(1)).strftime('%Y-%m-%d')
 response = requests.get(STOCK_ENDPOINT, params=parameters)
 response.raise_for_status()
-data = response.json()
-closing_price = data["Time Series (Daily)"][yesterday]["4. close"]
-print(closing_price)
-# closing_price = [yesterday_data["Time Series (Daily)"][yesterday]["4. Close"] for (yesterday_data, value) in data.items()]
+data = response.json()["Time Series (Daily)"]
+data_list = [value for (key, value) in data.items()]
+yesterday_data = data_list[0]
+yesterday_closing_price = yesterday_data["4. close"]
+print(yesterday_closing_price)
 
 
 #TODO 2. - Get the day before yesterday's closing stock price
+day_before_yesterday_data = yesterday_data = data_list[1]
+day_before_yesterday_closing_price = yesterday_data["4. close"]
+print(day_before_yesterday_closing_price)
 
 #TODO 3. - Find the positive difference between 1 and 2. e.g. 40 - 20 = -20, but the positive difference is 20. Hint: https://www.w3schools.com/python/ref_func_abs.asp
+positive_diff = float(yesterday_closing_price) - float(day_before_yesterday_closing_price)
+positive_diff = round(abs(positive_diff),2)
+print(positive_diff)
 
 #TODO 4. - Work out the percentage difference in price between closing price yesterday and closing price the day before yesterday.
+percentage_diff = abs((float(yesterday_closing_price) / float(day_before_yesterday_closing_price)) * 100 -100)
+print(percentage_diff)
 
 #TODO 5. - If TODO4 percentage is greater than 5 then print("Get News").
 
