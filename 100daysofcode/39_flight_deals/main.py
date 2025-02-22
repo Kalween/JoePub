@@ -12,9 +12,9 @@ if __name__ == "__main__":
     flight_info = FlightSearch()
 
 
-    # for iata in sheety_data["flight"]:
-    #     if iata["iataCode"] == "":
-    #         iata["iataCode"] = "test"
-    #         data_manager.update_entry(iata)  # Uppdaterar posten med "test"
-    # else:
-    #     print("Kunde inte hämta data.")
+    for iata in sheety_data["flight"]:
+        if iata["iataCode"] == "":
+            iata["iataCode"] = "test"
+            data_manager.update_entry(iata)  # Uppdaterar posten med "test"
+    else:
+        print("Kunde inte hämta data.")
