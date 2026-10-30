@@ -48,19 +48,27 @@ print(percentage_diff)
 if percentage_diff <= 5:
     ## STEP 2: https://newsapi.org/ 
     # Instead of printing ("Get News"), actually get the first 3 news pieces for the COMPANY_NAME.
-    response_news = requests.get(f'{NEWS_ENDPOINT}?q={COMPANY_NAME}&apiKey={settings.NEWS_API_KEY}') 
+    news_params = {
+        "apiKey":settings.NEWS_API_KEY,
+        "qInTitle":COMPANY_NAME,
+        "language":"en"
+    }
+    response_news = requests.get(NEWS_ENDPOINT, params=news_params) 
     data_news = response_news.json()
 
    #TODO 7. - Use Python slice operator to create a list that contains the first 3 articles. Hint: https://stackoverflow.com/questions/509211/understanding-slice-notation
     articles = data_news['articles']
     first_three_articles = articles[:3]  # Slice to get the first 3 articles
-    print(first_three_articles)
 
     ## STEP 3: Use twilio.com/docs/sms/quickstart/python
     #to send a separate message with each article's title and description to your phone number. 
 
 #TODO 8. - Create a new list of the first 3 article's headline and description using list comprehension.
-
+    the_news_title = [value["title"] for (value) in first_three_articles]
+    the_news = [value["content"] for (value) in first_three_articles]
+    
+    for i in range(len(the_news)):
+        print(f"{STOCK_NAME}: 🔺{percentage_diff}\nHeadline:{the_news_title[i]}\n{the_news[i]}\n\n")
 #TODO 9. - Send each article as a separate message via Twilio. 
 
 
